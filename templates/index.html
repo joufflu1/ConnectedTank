@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+    <!-- Ajout Bootstrap -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--Ajout police google-->
+    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet"></link>
+
+    <title>Connected Tank</title>
+
+</head>
+
+<body>
+
+    <!-- Header + navigation-->
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top navbar-right">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </button>
+                    <a class="navbar-brand" href="#">Connected Tank</a>
+                </div>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#tank-gauge">Tank-gauge</a></li>
+                        <li><a href="#weather-week">Weather</a></li>
+                        <li><a href="#weather-alerts">Alerts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Image -->
+    <section id="image-header">
+    </section>
+
+    <!-- Jauge de remplissage -->
+    <section id="tank-gauge">
+        <div id="g1"></div>
+
+	<script src="{{ url_for('static', filename='raphael-2.1.4.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='justgage.js') }}"></script>
+ 
+	
+        <script>
+            var g1;
+            window.onload = function () {
+                var g1 = new JustGage({
+                    id: "g1",
+                    value: getRandomInt(0, 100),
+                    min: 0,
+                    max: 100,
+                    title: "Tank Level",
+                    label: "%"
+                });
+
+                setInterval(function () {
+                    g1.refresh(getRandomInt(50, 100));
+                }, 2500);
+            };
+        </script>
+    </section>
+
+    <section id="weather-alerts">
+
+    </section>
+
+    <section id="weather-week">
+        <div class="weather-widget">
+<div id="cont_1c52c6197fb21c9dbd33b791c9b5dc67"><script type="text/javascript" async src="https://www.tameteo.com/wid_loader/1c52c6197fb21c9dbd33b791c9b5dc67"></script>
+
+</div>     
+    </div>
+
+</section>
+
+    <footer>
+
+        <h1>Connected Tank<span class="orange">.</span></h1>
+        <div class="copyright">Copyright 2017. Tous droits réservés</div>
+
+    </footer>
+
+
+</body>
+
+</html>

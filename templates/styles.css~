@@ -1,0 +1,64 @@
+
+/* Styles generaux */
+
+.orange{
+    color:#FF7A00;
+}
+.green{
+    color:#79b100;
+}
+
+h1{
+    font-family: Crete Round,serif;
+    font-size: 45px;
+    color:#444444;
+}
+
+#image-header{
+    height: 380px;
+    background: url('./images/water-rain-raindrops-drops-lite.png') center;
+
+}
+
+/*.tank-gauge{
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px; 
+}*/
+
+#g1 {
+     width:400px; height:330px;
+        padding-top: 10px; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+footer{
+    height: 260px;
+    background-color: #444;
+
+}
+
+footer h1{
+    color: #FFF;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.copyright{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 30px;
+
+}
+
+
+.weather-widget
+{
+    height:350px;
+        padding-top: 90px; 
+        margin-left: auto;
+        margin-right: auto;
+    background-color: #c0c0c0;
+}
+
