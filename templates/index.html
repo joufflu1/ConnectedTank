@@ -5,15 +5,20 @@
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    
+
     <!-- Ajout Bootstrap -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.js"></script>
+    <script src="../static/weather.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!--Ajout police google-->
-    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet"></link>
+    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet"/>
 
     <title>Connected Tank</title>
 
@@ -21,76 +26,113 @@
 
 <body>
 
-    <!-- Header + navigation-->
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top navbar-right">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </button>
-                    <a class="navbar-brand" href="#">Connected Tank</a>
-                </div>
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#tank-gauge">Tank-gauge</a></li>
-                        <li><a href="#weather-week">Weather</a></li>
-                        <li><a href="#weather-alerts">Alerts</a></li>
-                    </ul>
-                </div>
+<!-- Header + navigation-->
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-right">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a class="navbar-brand" href="#">Connected Tank</a>
             </div>
-        </nav>
-    </header>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#tank-gauge">Tank-gauge</a></li>
+                    <li><a href="#weather-week">Weather</a></li>
+                    <li><a href="#weather-alerts">Alerts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 
-    <!-- Image -->
-    <section id="image-header">
-    </section>
+<!-- Image -->
+<section id="image-header">
+</section>
 
-    <!-- Jauge de remplissage -->
-    <section id="tank-gauge">
-        <div id="g1"></div>
+<!-- Jauge de remplissage -->
+<section id="tank-gauge">
+    <div id="g1"></div>
 
-	<script src="{{ url_for('static', filename='raphael-2.1.4.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='justgage.js') }}"></script>
- 
-	
-        <script>
-            var g1;
-            window.onload = function () {
-                var g1 = new JustGage({
-                    id: "g1",
-                    value: getRandomInt(0, 100),
-                    min: 0,
-                    max: 100,
-                    title: "Tank Level",
-                    label: "%"
-                });
+    <script src="{{ url_for('static', filename='raphael-2.1.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='justgage.js') }}"></script>
 
-                setInterval(function () {
-                    g1.refresh(getRandomInt(50, 100));
-                }, 2500);
-            };
-        </script>
-    </section>
 
-    <section id="weather-alerts">
+    <script>
+        var g1;
+        window.onload = function () {
+            var g1 = new JustGage({
+                id: "g1",
+                value: getRandomInt(0, 100),
+                min: 0,
+                max: 100,
+                title: "Tank Level",
+                label: "%"
+            });
 
-    </section>
+            setInterval(function () {
+                g1.refresh(getRandomInt(50, 100));
+            }, 2500);
+        };
+    </script>
+</section>
 
-    <section id="weather-week">
-        <div class="weather-widget">
-<div id="cont_1c52c6197fb21c9dbd33b791c9b5dc67"><script type="text/javascript" async src="https://www.tameteo.com/wid_loader/1c52c6197fb21c9dbd33b791c9b5dc67"></script>
-
-</div>     
-    </div>
+<section id="weather-alerts">
 
 </section>
 
-    <footer>
+<section id="weather-week">
+    <div class="weather-widget">
+        <div id="cont_1c52c6197fb21c9dbd33b791c9b5dc67">
+            <script type="text/javascript" async
+                    src="https://www.tameteo.com/wid_loader/1c52c6197fb21c9dbd33b791c9b5dc67"></script>
+        </div>
+    </div>
+</section>
 
-        <h1>Connected Tank<span class="orange">.</span></h1>
-        <div class="copyright">Copyright 2017. Tous droits réservés</div>
 
-    </footer>
+
+<div ng-app="myApp">
+    <div ng-controller="MainCtrl">
+    <div style="width: 700px" align="center">
+        <alert ng-show="showAlert" type="{{alertType}}" close='removeAlert()'>{{alertType}} {{alertMessage}}</alert>
+    </div>
+        {{ text }}
+        {{ rain }}
+
+    </div>
+</div>
+
+<section id="weather-week-openweather">
+    <div class="weather-widget">
+        <script src='https://openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
+        <div id='openweathermap-widget'></div>
+        <script type='text/javascript'>
+            window.myWidgetParam = {
+                id: 11,
+                cityid: 2971117,
+                appid: 'ccc8240263784ad9f41414174c20d05a',
+                units: 'metric',
+                containerid: 'openweathermap-widget',
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.async = true;
+                script.src = 'https://openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(script, s);
+            })();
+        </script>
+    </div>
+</section>
+
+<footer>
+
+    <h1>Connected Tank<span class="orange">.</span></h1>
+    <div class="copyright">Copyright 2017. Tous droits réservés</div>
+
+</footer>
 
 
 </body>
