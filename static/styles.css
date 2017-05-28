@@ -9,22 +9,29 @@
 }
 
 h1{
-    font-family: Crete Round,serif;
+    font-family: sans-serif,serif;
     font-size: 45px;
     color:#444444;
+    text-align: center;
+}
+
+div h1{
+    /*font-family: arial;*/
+    font-size: 32px;
+    line-height: 45.7143px;
+    color:#333333;
+    /*color:#444444;*/
 }
 
 #image-header{
     height: 380px;
-    background: url('../static/water-rain-raindrops-drops-lite.png') center;
+    background: url('./images/water-rain-raindrops-drops-lite.png') center;
 
 }
 
-/*.tank-gauge{
-        margin-left: auto;
-        margin-right: auto;
-        width: 400px; 
-}*/
+#tank-gauge{
+        padding-top : 50px;
+}
 
 #g1 {
      width:400px; height:330px;
@@ -52,13 +59,12 @@ footer h1{
 
 }
 
-
 .weather-widget
 {
-    height:350px;
+    /*height:350px;
         padding-top: 90px; 
         margin-left: auto;
-        margin-right: auto;
-    background-color: #c0c0c0;
+        margin-right: auto;*/
+    background-color: #48545a;
 }
 

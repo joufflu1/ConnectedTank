@@ -71,8 +71,8 @@ JustGage = function(config) {
 
     // titleFontColor : string
     // color of gauge title
-    titleFontColor: kvLookup('titleFontColor', config, dataset, "#999999"),
-
+    //titleFontColor: kvLookup('titleFontColor', config, dataset, "#999999"),
+//titleFontColor: kvLookup('titleFontColor', config, dataset, "#77a707"),
     // titleFontFamily : string
     // color of gauge title
     titleFontFamily: kvLookup('titleFontFamily', config, dataset, "sans-serif"),
@@ -83,8 +83,8 @@ JustGage = function(config) {
 
     // valueFontColor : string
     // color of label showing current value
-    valueFontColor: kvLookup('valueFontColor', config, dataset, "#010101"),
-
+    //valueFontColor: kvLookup('valueFontColor', config, dataset, "#010101"),
+	valueFontColor: kvLookup('valueFontColor', config, dataset, "#77a707"),
     // valueFontFamily : string
     // color of label showing current value
     valueFontFamily: kvLookup('valueFontFamily', config, dataset, "Arial"),
@@ -128,7 +128,8 @@ JustGage = function(config) {
 
     // labelFontColor : string
     // color of label showing label under value
-    labelFontColor: kvLookup('labelFontColor', config, dataset, "#b3b3b3"),
+    //labelFontColor: kvLookup('labelFontColor', config, dataset, "#b3b3b3"),
+	labelFontColor: kvLookup('labelFontColor', config, dataset, "#77a707"),
 
     // shadowOpacity : int
     // 0 ~ 1
