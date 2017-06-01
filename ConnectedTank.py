@@ -8,8 +8,10 @@ socketio = SocketIO(app)
 
 @socketio.on('sendlevel')
 def handle_message_event(json):
-    level = json['data']
-    print(level)
+    distance = json['data']
+    print(distance)
+    global level
+    level  = distance
 
 @app.route("/")
 def hello():
@@ -17,10 +19,11 @@ def hello():
 
 @app.route('/Greetings')
 def Greetings():
-	return render_template('hello.html',temperature=35,humidity=78)
+    return render_template('hello.html',temperature=35,humidity=78)
 
 @app.route('/Tank')
 def Tank():
+    print level
     return render_template('App.html',niveau=level)
 
 if __name__ == "__main__":
