@@ -13,14 +13,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!--Ajout police google-->
-    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet"></link>
+    <!--Ajout police google
+    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet"></link>-->
 
+    <script src="{{ url_for('static', filename='angular.min.js') }}"></script> 
+    <script src="{{ url_for('static', filename='socket.io.js') }}"></script> 
+    <script src="{{ url_for('static', filename='ngSocket.js') }}"></script> 
+    <script src="{{ url_for('static', filename='level.js') }}"></script> 
+   <script src="{{ url_for('static', filename='weather.js') }}"></script> 
     <title>Connected Tank</title>
 
 </head>
 
-<body>
+<body ng-app="levelApp" ng-controller="levelController">
 
     <!-- Header + navigation-->
     <header>
@@ -48,12 +53,12 @@
 
     <!-- Jauge de remplissage -->
     <section id="tank-gauge">
-        <div id="g1"></div>
+        <div id="g1" ng-view></div>
 
         <script src="{{ url_for('static', filename='raphael-2.1.4.min.js') }}"></script>
         <script src="{{ url_for('static', filename='justgage.js') }}"></script>
         <script>
-            var g1;
+	var g1;
             window.onload = function () {
                 var g1 = new JustGage({
                     id: "g1",
@@ -65,14 +70,15 @@
                     label: "%"
                 });
 
-                setInterval(function () {
+                setInterval(
+			function () {
                     //g1.refresh(getRandomInt(50,100));
-		    g1.refresh({{ niveau }});
-                }, 2500);
+		    	g1.refresh({{level}});
+                	}, 2500);
             };
         </script>
     </section>
-
+level {{level}}
     <section id="weather-week">
         <div class="weather-widget">
 <p align="center">
@@ -102,7 +108,7 @@
     </section>
 
 
-<div ng-app="myApp">
+<!--<div ng-app="myApp">
     <div ng-controller="MainCtrl">
     <div style="width: 700px" align="center">
         <alert ng-show="showAlert" type="{{alertType}}" close='removeAlert()'>{{alertType}} {{alertMessage}}</alert>
@@ -111,7 +117,7 @@
         {{ rain }}
 
     </div>
-</div>
+</div> -->
 
 <!--
 <section id="weather-week-openweather">

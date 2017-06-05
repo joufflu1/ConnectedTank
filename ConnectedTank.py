@@ -12,6 +12,7 @@ def handle_message_event(json):
     print(distance)
     global level
     level  = distance
+    broadcastLevel(level)
 
 @app.route("/")
 def hello():
@@ -25,6 +26,10 @@ def Greetings():
 def Tank():
     print level
     return render_template('App.html',niveau=level)
+
+def broadcastLevel(level):
+    socketio.emit('level',{'niveau':level},broadcast=True)
+
 
 if __name__ == "__main__":
 	socketio.run(app, host='192.168.42.1', port=5000,log_output=True)
