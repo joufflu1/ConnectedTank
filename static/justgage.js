@@ -72,7 +72,7 @@ JustGage = function(config) {
     // titleFontColor : string
     // color of gauge title
     //titleFontColor: kvLookup('titleFontColor', config, dataset, "#999999"),
-//titleFontColor: kvLookup('titleFontColor', config, dataset, "#77a707"),
+titleFontColor: kvLookup('titleFontColor', config, dataset, "#77a707"),
     // titleFontFamily : string
     // color of gauge title
     titleFontFamily: kvLookup('titleFontFamily', config, dataset, "sans-serif"),

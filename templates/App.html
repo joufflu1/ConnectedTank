@@ -9,13 +9,14 @@
 
     <!-- Ajout Bootstrap -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!--Ajout police google
-    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet"></link>-->
-
+    -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    
     <script src="{{ url_for('static', filename='angular.min.js') }}"></script> 
     <script src="{{ url_for('static', filename='socket.io.js') }}"></script> 
     <script src="{{ url_for('static', filename='ngSocket.js') }}"></script> 
@@ -25,8 +26,7 @@
 
 </head>
 
-<body ng-app="levelApp" ng-controller="levelController">
-
+<body>
     <!-- Header + navigation-->
     <header>
         <nav class="navbar navbar-default navbar-fixed-top navbar-right">
@@ -53,7 +53,11 @@
 
     <!-- Jauge de remplissage -->
     <section id="tank-gauge">
-        <div id="g1" ng-view></div>
+      <div  ng-app="levelApp" ng-controller="levelController">
+
+        <div id="g1">level [[level]]</div>
+
+	</div>
 
         <script src="{{ url_for('static', filename='raphael-2.1.4.min.js') }}"></script>
         <script src="{{ url_for('static', filename='justgage.js') }}"></script>
@@ -62,23 +66,24 @@
             window.onload = function () {
                 var g1 = new JustGage({
                     id: "g1",
-                    value: getRandomInt(0, 100),
+        /*value: getRandomInt(0, 100),*/
+	            value: 50,
                     min: 0,
                     max: 100,
                     title: "Tank Level",
-			titleFontColor:"#77a707",
+		    titleFontColor:"#77a707",
                     label: "%"
                 });
 
                 setInterval(
 			function () {
                     //g1.refresh(getRandomInt(50,100));
-		    	g1.refresh({{level}});
+		    	g1.refresh([[level]]);
                 	}, 2500);
             };
         </script>
     </section>
-level {{level}}
+
     <section id="weather-week">
         <div class="weather-widget">
 <p align="center">

@@ -20,7 +20,12 @@ def hello():
 
 @app.route('/Greetings')
 def Greetings():
-    return render_template('hello.html',temperature=35,humidity=78)
+    return render_template('hello.html')
+
+@app.route('/JustGage')
+def JustGage():
+    return render_template('JustGage.html')
+
 
 @app.route('/Tank')
 def Tank():
