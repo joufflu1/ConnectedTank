@@ -13,14 +13,12 @@ levelApp.config(function ($interpolateProvider) {
  
 levelApp.controller('levelController', ['$scope', '$socket', function($scope, $socket) {
     $scope.level = 100;
-/*function(value) {console.log('Scope: '+value); return value; };*/
 
 
  
 $socket.on ('level', $scope, function (json) {
     console.log ('level ' + json.niveau);
     $scope.level = json.niveau;
-    /*$scope.level = "essai";*/
     
 });
 }]);

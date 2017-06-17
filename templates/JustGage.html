@@ -8,12 +8,12 @@
     <script src="../bower_components/raphael/raphael.js" type="text/javascript"></script>
     <script src="../bower_components/justgage-official/justgage.js" type="text/javascript"></script>
     <script src="../src/common.js" type="text/javascript"></script>-->
-    <script src="../../tmp/angular-gage/src/controllers/justgage.js" type="text/javascript"></script>
-    <script src="../../tmp/angular-gage/src/directives/justgage.js" type="text/javascript"></script>
 
-        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <script src="{{ url_for('static', filename='jquery-1.12.4.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     
     <script src="{{ url_for('static', filename='angular.min.js') }}"></script> 
     <script src="{{ url_for('static', filename='socket.io.js') }}"></script> 
@@ -25,16 +25,19 @@
       <script src="{{ url_for('static', filename='justgage.js') }}"></script>
       <script src="{{ url_for('static', filename='angular-gage.min.js') }}"></script>
 
+    
+    <script src="{{ url_for('static', filename='./controllers/justgage.js') }}"></script>
+    <script src="{{ url_for('static', filename='./directives/justgage.js') }}"></script>
       
       
       
     <script type="text/javascript">
         var app = angular.module('justgageDemoApp', ['frapontillo.gage']);
         app.controller('MainCtrl', function ($scope) {
-            $scope.title = 'My gauge';
-            $scope.titleFontColor = 'blue';
-            $scope.value = 50;
-            $scope.valueFontColor = 'red';
+            $scope.title = 'Tank Level';
+            $scope.titleFontColor = 'green';
+            $scope.value = 90;
+            $scope.valueFontColor = 'green';
             $scope.min = 0;
             $scope.max = 100;
             $scope.valueMinFontSize = undefined;
@@ -59,21 +62,26 @@
                 {
                     color: "#ff0000",
                     lo: 0,
-                    hi: 750
+                    hi: 25
                 },
                 {
-                    color: "#00ff00",
-                    lo: 750,
-                    hi: 1000
-                },
+                    color: "#ff9933",
+                    lo: 25,
+                    hi: 50
+        },
+	         {
+                    color: "#ccff33",
+                    lo: 50,
+                    hi: 75
+        },
                 {
-                    color: "#0000ff",
-                    lo: 1000,
-                    hi: 1337
+                    color: "#33CC33",
+                    lo: 75,
+                    hi: 100
                 }
             ];
             $scope.noGradient = false;
-            $scope.label = 'Green label';
+            $scope.label = '%';
             $scope.labelFontColor = 'green';
             $scope.startAnimationTime = 0;
             $scope.startAnimationType = undefined;
@@ -89,8 +97,17 @@
             $scope.humanFriendlyDecimal = true;
             $scope.textRenderer = function (value) {
                 return value;
-            };
+        };
+
+
+	
         });
+	app.config(function ($interpolateProvider) {  
+	$interpolateProvider.startSymbol('[[');
+	$interpolateProvider.endSymbol(']]');
+	});
+
+	
     </script>
     <style type="text/css">
         body {
@@ -105,24 +122,24 @@
 The following gauge is 50% wide in order to test responsiveness.
 <div class="wrapper" ng-controller="MainCtrl">
     <div justgage
-         title="{{title}}" title-font-color="{{titleFontColor}}"
-         value="{{value}}" value-font-color="{{valueFontColor}}"
-         width="{{width}}" height="{{height}}" relative-gauge-size="{{relativeGaugeSize}}"
-         value-min-font-size="{{valueMinFontSize}}" title-min-font-size="{{titleMinFontSize}}"
-         label-min-font-size="{{labelMinFontSize}}" min-label-min-font-size="{{minLabelMinFontSize}}"
-         maxLabelMinFontSize="{{maxLabelMinFontSize}}"
-         min="{{min}}" max="{{max}}"
-         hide-min-max="{{hideMinMax}}" hide-value="{{hideValue}}" hide-inner-shadow="{{hideInnerShadow}}"
-         gauge-width-scale="{{gaugeWidthScale}}" gauge-color="{{gaugeColor}}"
-         show-inner-shadow="{{showInnerShadow}}" shadow-opacity="{{shadowOpacity}}"
-         shadow-size="{{shadowSize}}" shadow-vertical-offset="{{shadowVerticalOffset}}"
-         level-colors="{{levelColors}}" custom-sectors="{{customSectors}}" no-gradient="{{noGradient}}"
-         label="{{label}}" label-font-color="{{labelFontColor}}"
-         start-animation-time="{{startAnimationTime}}" start-animation-type="{{startAnimationType}}"
-         refresh-animation-time="{{refreshAnimationTime}}" refresh-animation-type="{{refreshAnimationType}}"
-         donut="{{donut}}" donut-start-angle="{{donutStartAngle}}"
-         counter="{{counter}}" decimals="{{decimals}}" symbol="{{symbol}}" format-number="{{formatNumber}}"
-         human-friendly="{{humanFriendly}}" human-friendly-decimal="{{humanFriendlyDecimal}}"
+         title="[[title]]" title-font-color="[[titleFontColor]]"
+         value="[[value]]" value-font-color="[[valueFontColor]]"
+         width="[[width]]" height="[[height]]" relative-gauge-size="[[relativeGaugeSize]]"
+         value-min-font-size="[[valueMinFontSize]]" title-min-font-size="[[titleMinFontSize]]"
+         label-min-font-size="[[labelMinFontSize]]" min-label-min-font-size="[[minLabelMinFontSize]]"
+         maxLabelMinFontSize="[[maxLabelMinFontSize]]"
+         min="[[min]]" max="[[max]]"
+         hide-min-max="[[hideMinMax]]" hide-value="[[hideValue]]" hide-inner-shadow="[[hideInnerShadow]]"
+         gauge-width-scale="[[gaugeWidthScale]]" gauge-color="[[gaugeColor]]"
+         show-inner-shadow="[[showInnerShadow]]" shadow-opacity="[[shadowOpacity]]"
+         shadow-size="[[shadowSize]]" shadow-vertical-offset="[[shadowVerticalOffset]]"
+         level-colors="[[levelColors]]" custom-sectors="[[customSectors]]" no-gradient="[[noGradient]]"
+         label="[[label]]" label-font-color="[[labelFontColor]]"
+         start-animation-time="[[startAnimationTime]]" start-animation-type="[[startAnimationType]]"
+         refresh-animation-time="[[refreshAnimationTime]]" refresh-animation-type="[[refreshAnimationType]]"
+         donut="[[donut]]" donut-start-angle="[[donutStartAngle]]"
+         counter="[[counter]]" decimals="[[decimals]]" symbol="[[symbol]]" format-number="[[formatNumber]]"
+         human-friendly="[[humanFriendly]]" human-friendly-decimal="[[humanFriendlyDecimal]]"
          text-renderer="textRenderer"></div>
 </div>
 </body>

@@ -1,6 +1,13 @@
 
 /* Styles generaux */
 
+.wrapper {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+
 .orange{
     color:#FF7A00;
 }
