@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <script src="{{ url_for('static', filename='jquery-1.12.4.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7.Glyphicons.css') }}">
     
     <script src="{{ url_for('static', filename='angular.min.js') }}"></script>
     
@@ -128,13 +129,13 @@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </button>
-                    <a class="navbar-brand" href="#">Connected Tank</a>
+                    <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-cloud" style="color:green" ><strong>Connected Tank</strong></span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#tank-gauge">Tank-gauge</a></li>
-                        <li><a href="#weather-week">Weather</a></li>
-                        <li><a href="#weather-alerts">Alerts</a></li>
+                        <li><a href="#tank-gauge"><span style="color:green">Tank-gauge</span></a></li>
+                        <li><a href="#weather-week"><span style="color:green">Weather</span></a></li>
+                        <li><a href="#weather-alerts"><span style="color:green">Alerts</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -179,7 +180,7 @@
   <section id="weather-week">
         <div class="weather-widget">
 <p align="center">
-<iframe src="https://www.meteoblue.com/fr/meteo/widget/three/antibes_france_3037456?geoloc=fixed&nocurrent=0&noforecast=0&days=7&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=dark"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups" style="width: 805px;height: 616px"></iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/fr/meteo/prevision/semaine/antibes_france_3037456?utm_source=weather_widget&utm_medium=linkus&utm_content=three&utm_campaign=Weather%2BWidget" target="_blank">meteoblue</a></div>
+<iframe src="https://www.meteoblue.com/fr/meteo/widget/three/antibes_france_3037456?geoloc=fixed&nocurrent=0&noforecast=0&days=7&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=dark"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups" style="width: 805px;height: 616px"></iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/fr/meteo/prevision/semaine/antibes_france_3037456?utm_source=weather_widget&utm_medium=linkus&utm_content=three&utm_campaign=Weather%2BWidget" target="_blank"></a></div>
 </p>
 </div>               
         </div>
@@ -188,25 +189,25 @@
 
         <section id="weather-alerts">
         <div class="container-fluid">
-            <h1>Weather Alerts</h1>
-            <div class="alert alert-success">
+            <h1><span style="color:green; font-family:arial;font-size: 45px;font-weight:bold">Weather Alerts</span></h1>
+            <!--<div class="alert alert-success">
                 <strong>Success!</strong> This alert box could indicate a successful or positive action.
-            </div>
+            </div>-->
             <div class="alert alert-info">
-                <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+                <strong>Info! : </strong> 03/07/2017 No rain forecasted for the next seven days 
             </div>
             <div class="alert alert-warning">
-                <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+                <strong>Warning! : </strong> 22/01/2017: Temperature under O°C
             </div>
-            <div class="alert alert-danger">
-                <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+            <!--<div class="alert alert-danger">
+                <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.-->
             </div>
         </div>
-    </section>
+    </section> 
 
 
-<!--<div ng-app="myApp">
-    <div ng-controller="MainCtrl">
+<div ng-app="myApp">
+    <div ng-controller="WeatCtrl">
     <div style="width: 700px" align="center">
         <alert ng-show="showAlert" type="{{alertType}}" close='removeAlert()'>{{alertType}} {{alertMessage}}</alert>
     </div>
@@ -214,7 +215,7 @@
         {{ rain }}
 
     </div>
-</div> -->
+</div>
 
 <!--
 <section id="weather-week-openweather">
@@ -248,7 +249,7 @@
     <footer>
 
         <h1>Connected Tank<span class="green">.</span></h1>
-        <div class="copyright">Copyright 2017. Tous droits réservés</div>
+        <div class="copyright">Copyright 2017. All rights reserved</div>
 
     </footer>
 

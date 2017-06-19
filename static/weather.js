@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp', ['ui.bootstrap']);
 
-myApp.controller('MainCtrl', ['$scope', '$http', 'myService', 'fcm', '$interval', function ($scope, $http, myService, fcm, $interval) {
+myApp.controller('WeatCtrl', ['$scope', '$http', 'myService', 'fcm', '$interval', function ($scope, $http, myService, fcm, $interval) {
     $scope.text = 'Il pleut ? ';
     $scope.showAlert = null;
     $scope.alertType = "danger";
