@@ -209,11 +209,10 @@
 <div ng-app="myApp">
     <div ng-controller="WeatCtrl">
     <div style="width: 700px" align="center">
-        <alert ng-show="showAlert" type="{{alertType}}" close='removeAlert()'>{{alertType}} {{alertMessage}}</alert>
+        <alert ng-show="showAlert" type="{{alertType}}" close='removeAlert()'>{{alertType}}!: {{alertMessage}}</alert>
     </div>
         {{ text }}
         {{ rain }}
-
     </div>
 </div>
 

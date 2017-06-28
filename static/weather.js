@@ -42,30 +42,4 @@ myApp.factory('myService', function ($http) {
     return myService;
 });
 
-myApp.factory('fcm', function ($http) {
-    var myService = {
-        sendNoti: function (message, isNotification) {
-            var apiKey = "key=TODO",
-                deviceId = "TODO",
-                action = {"to": deviceId, "notification": {"title": "Connected Tank Alert", "body": message}};
 
-            if (!isNotification) {
-                action = {"to": deviceId, "data": {"message": message}};
-            }
-
-            return $http({
-                url: 'https://fcm.googleapis.com/fcm/send',
-                method: "POST",
-                headers: {'Content-Type': 'application/json', 'Authorization': apiKey},
-                data: JSON.stringify(action),
-                async: true
-            })
-                .then(function successCallback(response) {
-                return "";
-            }, function errorCallback(response) {
-                return "";
-            });
-        }
-    };
-    return myService;
-});
