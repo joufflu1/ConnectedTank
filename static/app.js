@@ -1,7 +1,7 @@
 var app = angular.module('justgageDemoApp', ['ngSocket', 'frapontillo.gage', 'ui.bootstrap']);
 
 app.controller('MainCtrl', ['$scope', '$socket', '$http', 'myService', 'fcm', '$interval', function ($scope, $socket, $http, myService, fcm, $interval) {
-    $scope.title = 'Tank Level';
+    $scope.title = 'Water Level';
     $scope.titleFontColor = 'green';
     $scope.value = 90;
     $scope.valueFontColor = 'green';
@@ -42,7 +42,7 @@ app.controller('MainCtrl', ['$scope', '$socket', '$http', 'myService', 'fcm', '$
             hi: 75
         },
         {
-            color: "#33CC33",
+            color: "#0066FF",
             lo: 75,
             hi: 100
         }
@@ -69,18 +69,18 @@ app.controller('MainCtrl', ['$scope', '$socket', '$http', 'myService', 'fcm', '$
 
     $socket.on('level', $scope, function (json) {
         console.log('level ' + json.niveau);
-        if (json.niveau < 50) {
+        $scope.value = Math.round(100-(json.niveau*3.70));
+	        if ($scope.value < 50) {
             $scope.showAlert = true;
         } else {
             $scope.showAlert = false;
         }
-        $scope.value = Math.round(json.niveau);
     });
 
     $scope.text = 'Il pleut ? ';
     $scope.showAlert = null;
     $scope.alertType = "danger";
-    $scope.alertMessage = "Danger! Des precipitation sont à prevoir. Il est recommandé de vider votre Cuve";
+    $scope.alertMessage = "Warning! Your cistern is near to be empty";
 
     myService.async("2971117").then(function (d) {
         $scope.rain = d + " %";
@@ -89,7 +89,7 @@ app.controller('MainCtrl', ['$scope', '$socket', '$http', 'myService', 'fcm', '$
     // Alert: Des precipitation sont a prevoir. Il est recommandé de vider votre Cuve
     $interval(function () {
         $scope.rain = "100 %";
-        $scope.showAlert = true;
+        //$scope.showAlert = true;
         fcm.sendNoti("ALERT RAIN", true);
         // Refresh every 10 second
     }, 30000);

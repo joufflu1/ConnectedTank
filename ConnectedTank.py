@@ -32,6 +32,12 @@ def Tank():
     print level
     return render_template('App.html',niveau=level)
 
+@app.route('/AppDemo')
+def AppDemo():
+    print level
+    return render_template('AppDemo.html',niveau=level)
+
+
 def broadcastLevel(level):
     socketio.emit('level',{'niveau':level},broadcast=True)
 
